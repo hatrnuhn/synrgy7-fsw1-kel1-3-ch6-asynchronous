@@ -7,13 +7,16 @@ const config: { [key: string]: Knex.Config } = {
     client: "postgres",
     connection: {
       database: "db_tagihan",
-      user: 'postgres',
-      password: '123456',
-      host: '127.0.0.1',
+      user: "postgres",
+      password: "123123",
+      host: "127.0.0.1",
       port: 5432,
-    }
+    },
+    migrations: {
+      tableName: "knex_migrations",
+      directory: "./src/database/migrations",
+    },
   },
-
 };
 
 module.exports = config;
