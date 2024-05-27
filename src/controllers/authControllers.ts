@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express"
+import { NextFunction, Request, RequestHandler, Response } from "express"
 import { UsersModel } from "../database/model/users.model";
 import bcrypt from 'bcrypt';
 
@@ -15,4 +15,21 @@ export const loginRequest = async (req: Request, res: Response, next: NextFuncti
     } catch (error) {
         next(error)
     }
+}
+
+export const register: RequestHandler = async (req, res) => {
+  try {
+    const newUser = {
+      ...req.body,
+      password: await bcrypt.hash(req.body.password, 10)
+    } 
+    await UsersModel.query().insert(newUser);
+
+    res.status(201).json({ status: 'Created', message: 'success'})
+  } catch (err) {
+    res.status(500).json({
+      status: 'Error',
+      message: JSON.stringify(err)
+    })
+  }
 }
