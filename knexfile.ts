@@ -8,13 +8,16 @@ const config: { [key: string]: Knex.Config } = {
     connection: {
       database: "db_tagihan",
       user: "postgres",
-      password: "123123",
+      password: "123456",
       host: "127.0.0.1",
       port: 5432,
     },
     migrations: {
       tableName: "knex_migrations",
       directory: "./src/database/migrations",
+    },
+    seeds: {
+      directory: 'src/database/seeds',
     },
   },
 };

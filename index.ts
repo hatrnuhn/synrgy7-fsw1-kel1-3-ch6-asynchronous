@@ -1,7 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import knex from "knex";
 import { Model } from "objection";
-// import { Articles, ArticlesModel } from "./model/article.model";
 import router from "./src/routes";
 
 const app: Express = express();
@@ -21,7 +20,7 @@ const knexInstance = knex({
 Model.knex(knexInstance);
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(router);
 
 app.listen(port, () => {

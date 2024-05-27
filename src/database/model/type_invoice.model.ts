@@ -3,16 +3,17 @@ import { InvoiceModel } from "./invoice.model";
 
 export class TypeInvoiceModel extends Model {
   id!: number;
-  total_invoice!: number;
-  type_invoice!: string;
+  price!: number;
+  name!: string;
 
   static get tableName() {
-    return "invoice";
+    return "type_invoice";
   }
+
   static get relationMappings() {
     return {
         invoice: {
-            relation: Model.BelongsToOneRelation,
+            relation: Model.HasManyRelation,
             modelClass: InvoiceModel,
             join: {
                 from : 'type_invoice.id',
